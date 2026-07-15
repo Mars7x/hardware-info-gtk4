@@ -1,0 +1,1 @@
+# hardware-info-gtk4
