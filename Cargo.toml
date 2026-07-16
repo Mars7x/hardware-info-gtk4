@@ -1,0 +1,19 @@
+[package]
+name = "hardware-info-gtk4"
+version = "2026.7.15"
+edition = "2021"
+rust-version = "1.83"
+description = "A GTK 4 and libadwaita Linux hardware monitor"
+authors = ["Mars7x (via GPT-5.6 Sol)"]
+
+[dependencies]
+adw = { package = "libadwaita", version = "=0.9.2", features = ["v1_6"] }
+gtk = { package = "gtk4", version = "=0.11.4", features = ["v4_14"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+incremental = false
+strip = true
