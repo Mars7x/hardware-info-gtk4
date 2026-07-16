@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.mars7x.hardware-info-gtk4</id>
+  <name>hardware-info-gtk4</name>
+  <summary>Live Linux PC hardware telemetry</summary>
+  <developer id="mars7x"><name>Mars7x (via GPT-5.6 Sol)</name></developer>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <description>
+    <p>hardware-info-gtk4 presents live CPU, memory, per-GPU, whole-drive usage, connected devices, and battery information in a focused GTK 4 and libadwaita dashboard with recent-history graphs.</p>
+    <p>A manually controlled adaptive sidebar works across desktop and narrow window sizes. The hardware page provides a selectable static component inventory, while additional thermals, fan speeds, and power readings appear directly on Overview.</p>
+    <p>The application supports x86-64 and ARM64 Linux systems. On ARM hardware it uses device-tree, thermal-zone, sysfs DRM, and standard kernel interfaces when desktop-style DMI or PCI data is unavailable.</p>
+    <p>Values depend on the sensors and interfaces exposed by the Linux kernel and installed hardware drivers.</p>
+  </description>
+  <launchable type="desktop-id">io.github.mars7x.hardware-info-gtk4.desktop</launchable>
+  <provides>
+    <binary>hardware-info-gtk4</binary>
+  </provides>
+  <categories>
+    <category>System</category>
+    <category>Monitor</category>
+  </categories>
+  <releases>
+    <release version="2026.7.15" date="2026-07-15">
+      <description>
+        <p>Current development release with live hardware telemetry, connected-device discovery, adaptive navigation, static hardware inventory, and ARM64 support.</p>
+      </description>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1" />
+</component>
