@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=hardware-info-gtk4
+Comment=Inspect CPU, memory, GPU, temperatures, fans, power, and detected PC components
+Exec=hardware-info-gtk4
+Terminal=false
+Type=Application
+Categories=System;Monitor;
+Keywords=hardware;monitor;cpu;gpu;ram;memory;temperature;sensors;fan;
+StartupNotify=true
