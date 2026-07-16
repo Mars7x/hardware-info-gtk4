@@ -1,0 +1,46 @@
+app-id: io.github.mars7x.hardware-info-gtk4
+runtime: org.gnome.Platform
+runtime-version: '50'
+sdk: org.gnome.Sdk
+# The manifest is architecture-neutral. flatpak-builder uses the host
+# architecture, including aarch64 on ARM Linux systems.
+command: hardware-info-gtk4
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  # Required for flatpak-spawn --host. The app uses it only to read host
+  # /proc statistics and optional host tools such as nvidia-smi, df, lspci,
+  # lsblk, lsusb, udevadm, and bluetoothctl when available.
+  - --talk-name=org.freedesktop.Flatpak
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_HOME: /run/build/hardware-info-gtk4/cargo
+
+modules:
+  - name: hardware-info-gtk4
+    buildsystem: simple
+    # Development convenience: Cargo can download crates while building.
+    # For Flathub submission, replace this with generated cargo-sources.json
+    # and remove the network build argument.
+    build-options:
+      build-args:
+        - --share=network
+    build-commands:
+      - cargo build --release
+      - install -Dm755 target/release/hardware-info-gtk4 /app/bin/hardware-info-gtk4
+      - install -Dm644 data/io.github.mars7x.hardware-info-gtk4.desktop /app/share/applications/io.github.mars7x.hardware-info-gtk4.desktop
+      - install -Dm644 data/io.github.mars7x.hardware-info-gtk4.metainfo.xml /app/share/metainfo/io.github.mars7x.hardware-info-gtk4.metainfo.xml
+      - install -Dm644 data/icons/hicolor/symbolic/apps/gpu-symbolic.svg /app/share/icons/hicolor/symbolic/apps/gpu-symbolic.svg
+      - install -Dm644 data/icons/hicolor/symbolic/apps/gpu-symbolic.svg /app/share/hardware-info-gtk4/icons/gpu-symbolic.svg
+      - install -Dm644 data/icons/hicolor/symbolic/apps/processor-symbolic.svg /app/share/icons/hicolor/symbolic/apps/processor-symbolic.svg
+      - install -Dm644 data/icons/hicolor/symbolic/apps/processor-symbolic.svg /app/share/hardware-info-gtk4/icons/processor-symbolic.svg
+    sources:
+      - type: dir
+        path: ..
